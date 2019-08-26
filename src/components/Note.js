@@ -35,11 +35,22 @@ class Note extends Component {
 		}
 	}
 
+	renderTags(note) {
+		if (note.tags) {
+			return note.tags.map((tag, index) =>
+				<div className="tag" key={index}>
+					<i className="material-icons">delete</i>
+					{tag.name}
+				</div>);
+		}
+	}
+
+
 	render() {
-		const { note } = this.props;
+		const { note, closeTagForm } = this.props;
 
 		return(<div className="note-container">
-			<form className="note-form" onSubmit={(e) => this.onSubmit(e)}>
+			<form className="note-form" onSubmit={(e) => this.onSubmit(e)} onclick={() => closeTagForm}>
 				<input className="note-title-input" type="text"
 					placeholder="Note Title..." defaultValue={note.title}
 					ref={(input) => this.title = input} />
@@ -50,6 +61,9 @@ class Note extends Component {
 			<div className="tag-container">
 				<div className="tag-button-container">
 					{this.renderTagForm(note)}
+				</div>
+				<div className="tag-list-container">
+					{this.renderTags(note)}
 				</div>
 			</div>
 		</div>);
