@@ -52,9 +52,9 @@ class App extends Component {
 		.catch((err) => {
 			const { errors } = err.response.data;
 			if (errors.content) {
-				this.setState({ error: "Missing Note Content!" });
+				this.setState({ error: 'Missing Note Content!' });
 			} else if (errors.title) {
-				this.setState({ error: "Missing Note Title!" });
+				this.setState({ error: 'Missing Note Title!' });
 			}
 		});
 	}
@@ -75,14 +75,12 @@ class App extends Component {
 	}
 	
 	submitTag = (data, noteId) => {
-		axios.post(urlFor(`notes/${noteId}`), data)
+		axios.post(urlFor(`notes/${noteId}/tags`), data)
 		.then((res) => this.getNote(noteId))
 		.catch((err) => {
 			const { errors } = err.response.data;
-			if (errors.content) {
-				this.setState({ error: "Missing Note Content!" });
-			} else if (errors.title) {
-				this.setState({ error: "Missing Note Title!" });
+			if (errors.name) {
+				this.setState({ error: "Missing Tag Name!"});
 			}
 		});
 	}

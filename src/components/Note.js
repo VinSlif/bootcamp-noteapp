@@ -5,7 +5,7 @@ class Note extends Component {
 		e.preventDefault();
 		const formData = {
 			title: this.title.value,
-			content: this.title.value
+			content: this.content.value
 		};
 		this.props.submitNote(formData, this.props.note.id);
 	}
@@ -50,7 +50,7 @@ class Note extends Component {
 		const { note, closeTagForm } = this.props;
 
 		return(<div className="note-container">
-			<form className="note-form" onSubmit={(e) => this.onSubmit(e)} onclick={() => closeTagForm}>
+			<form className="note-form" onSubmit={(e) => this.onSubmit(e)} onClick={() => closeTagForm}>
 				<input className="note-title-input" type="text"
 					placeholder="Note Title..." defaultValue={note.title}
 					ref={(input) => this.title = input} />
