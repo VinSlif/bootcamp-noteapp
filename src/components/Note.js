@@ -38,7 +38,7 @@ class Note extends Component {
 	renderTags(note) {
 		if (note.tags) {
 			return note.tags.map((tag, index) =>
-				<div className="tag" key={index}>
+				<div className="tag" key={index} onClick={(e) => this.props.deleteTag(note.id, tag.id)}>
 					<i className="material-icons">delete</i>
 					{tag.name}
 				</div>);
